@@ -7,7 +7,7 @@ const port = process.env.PORT ;
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-frontend-domain.com"  
+  "https://jobsy-rust.vercel.app"  
 ];
 
 app.use(cors({
