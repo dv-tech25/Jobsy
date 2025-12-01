@@ -8,7 +8,7 @@ app.set("trust proxy", 1);
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://jobsy-fhtckvoqy-devendra-vishwakarma-s-projects.vercel.app"  
+  "https://jobsy-fbt4pb6yr-devendra-vishwakarma-s-projects.vercel.app"  
 ];
 
 app.use(cors({
