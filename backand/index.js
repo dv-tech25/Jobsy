@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT ;
+app.set("trust proxy", 1);
 
 const allowedOrigins = [
   "http://localhost:5173",

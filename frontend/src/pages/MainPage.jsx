@@ -14,10 +14,10 @@ import {
   addApplication,
   updateApplicationStatus,
   deleteApplication,
-  logout
+  logout,
 } from "../utils/api";
 
-// 🔥 Add Toastify imports
+//  Add Toastify imports
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -50,15 +50,17 @@ const MainPage = () => {
   useEffect(() => {
     const initialize = async () => {
       try {
-        const API_URL_me = import.meta.env.VITE_API_URL_me;
-        const response = await axiosInstance.get(API_URL_me);
+        // ✅ FIX: use relative endpoint with axiosInstance
+        const response = await axiosInstance.get("/me");
         setUserName(response.data.name || "User");
       } catch (err) {
         console.error("Error fetching user data:", err);
         toast.error("Failed to fetch user details");
       }
+
       await loadApplications();
     };
+
     initialize();
   }, [loadApplications]);
 
@@ -74,9 +76,15 @@ const MainPage = () => {
   const statusCounts = useMemo(() => {
     return {
       total: applications.length,
-      pending: applications.filter((a) => a.status === APPLICATION_STATUS.PENDING).length,
-      shortlisted: applications.filter((a) => a.status === APPLICATION_STATUS.SHORTLISTED).length,
-      rejected: applications.filter((a) => a.status === APPLICATION_STATUS.REJECTED).length,
+      pending: applications.filter(
+        (a) => a.status === APPLICATION_STATUS.PENDING
+      ).length,
+      shortlisted: applications.filter(
+        (a) => a.status === APPLICATION_STATUS.SHORTLISTED
+      ).length,
+      rejected: applications.filter(
+        (a) => a.status === APPLICATION_STATUS.REJECTED
+      ).length,
     };
   }, [applications]);
 
@@ -147,9 +155,17 @@ const MainPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gray-100">
-      <TopBar userName={userName} onToggleSidebar={() => setShowSidebar((s) => !s)} />
+      <TopBar
+        userName={userName}
+        onToggleSidebar={() => setShowSidebar((s) => !s)}
+      />
 
-      <Sidebar show={showSidebar} userName={userName} statusCounts={statusCounts} onLogout={logoutHandler} />
+      <Sidebar
+        show={showSidebar}
+        userName={userName}
+        statusCounts={statusCounts}
+        onLogout={logoutHandler}
+      />
 
       <div className="flex-1 p-4 md:p-10 h-full">
         <div className="flex flex-row gap-3 items-center mb-6 animate-slideDown animate-fadeUp">
@@ -185,12 +201,12 @@ const MainPage = () => {
               />
             </motion.div>
           ))}
-           {filteredApps.length === 0 && (
-        <p className="col-span-full mt-50 text-center text-gray-600 text-lg font-medium">
-          No applications found
-        </p>
-      )}
 
+          {filteredApps.length === 0 && (
+            <p className="col-span-full mt-50 text-center text-gray-600 text-lg font-medium">
+              No applications found
+            </p>
+          )}
         </div>
 
         {showModal && (
@@ -201,9 +217,7 @@ const MainPage = () => {
             handleAddApplication={handleAddApplication}
           />
         )}
-
       </div>
-     
 
       {/*  Toast Container */}
       <ToastContainer position="bottom-right" autoClose={3000} theme="colored" />
