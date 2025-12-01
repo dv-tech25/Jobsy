@@ -1,0 +1,37 @@
+import axios from "axios";
+import { API_CONFIG } from "../config/api";
+
+const axiosInstance = axios.create({
+  baseURL: API_CONFIG.BASE_URL,
+  timeout: API_CONFIG.TIMEOUT,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Request interceptor
+axiosInstance.interceptors.request.use(
+  (config) => {
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Response interceptor
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response?.status === 401) {
+      // Unauthorized - redirect to login
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default axiosInstance;
