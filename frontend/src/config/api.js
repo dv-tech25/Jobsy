@@ -1,11 +1,12 @@
 // API Endpoints Configuration
 export const API_ENDPOINTS = {
-  LOGIN: import.meta.env.VITE_API_URL_login,
-  LOGOUT: import.meta.env.VITE_API_URL_logout,
-  ME: import.meta.env.VITE_API_URL_me,
-  APPLICATIONS: import.meta.env.VITE_API_URL,
-  SIGNUP: import.meta.env.VITE_API_URL_signup,
+  LOGIN: "/login",
+  LOGOUT: "/logout",
+  ME: "/me",
+  APPLICATIONS: "/applications",
+  SIGNUP: "/signup",
 };
+
 
 // API Base Configuration
 export const API_CONFIG = {
