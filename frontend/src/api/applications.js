@@ -1,6 +1,9 @@
 import axiosInstance from "../utils/axiosInstance";
 
-export const fetchApplications = () => axiosInstance.get("/applications");
+export const fetchApplications = async () => {
+  const { data } = await axiosInstance.get("/applications");
+  return data.applications || [];
+};
 
 export const addApplication = (data) =>
   axiosInstance.post("/applications", data);

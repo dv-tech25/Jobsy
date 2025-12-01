@@ -41,8 +41,9 @@ const MainPage = () => {
 
   const loadApplications = useCallback(async () => {
     try {
-      const data = await fetchApplications();
-      setApplications(data || []);
+      const apps = await fetchApplications();
+    setApplications(apps);
+
     } catch (err) {
       console.error("Error loading applications:", err);
       toast.error("Failed to load applications");
