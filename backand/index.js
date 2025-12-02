@@ -8,7 +8,7 @@ const port = process.env.PORT ;
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://jobsy-m7ujm6xua-devendra-vishwakarma-s-projects.vercel.app"  
+  "https://jobsy-3tlkcb0q2-devendra-vishwakarma-s-projects.vercel.app/"  
   
 ];
 
