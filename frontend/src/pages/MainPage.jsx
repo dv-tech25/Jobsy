@@ -158,9 +158,21 @@ const MainPage = () => {
       <Sidebar show={showSidebar} userName={userName} statusCounts={statusCounts} onLogout={logoutHandler} />
 
       <div className="flex-1 p-4 md:p-10 h-full">
+      
         <div className="flex flex-row gap-3 items-center mb-6">
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-          <button onClick={() => setShowModal(true)} className="hidden sm:inline-flex bg-blue-500 text-white px-5 py-2 rounded-lg">
+          <button
+            onClick={() => setShowModal(true)}
+            aria-label="Add application"
+            className="sm:hidden bg-blue-500 w-12 h-10 flex items-center justify-center text-white rounded-lg hover:bg-blue-600 transition font-bold"
+          >
+            +
+          </button>
+          <button
+            onClick={() => setShowModal(true)}
+            aria-label="Add application"
+            className="hidden sm:inline-flex bg-blue-500 items-center text-white px-5 py-2 rounded-lg hover:bg-blue-600 transition"
+          >
             + Add Application
           </button>
         </div>
